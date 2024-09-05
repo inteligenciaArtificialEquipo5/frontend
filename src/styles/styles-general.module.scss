@@ -1,0 +1,35 @@
+@import "./styles-colors.scss";
+
+
+// Aseguramos que tanto el HTML como el BODY ocupen toda la altura
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 100%; // Ocupar siempre el 100% de la pantalla
+    min-height: 100vh; // Asegura que el body ocupe al menos la altura completa de la ventana
+}
+
+body {
+    background-image: url('../assets/images/spaceBg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; // Ocupa el 100% de la ventana sin limitar el crecimiento
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; // El contenido comienza desde arriba
+    color: $colorBlancoTexto;
+    
+    @media (max-width: 1024px) and (min-height: 1342px) {
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh; // Asegura que el fondo cubra toda la altura
+    }
+
+    @media (max-width: 768px) {
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+    }
+}

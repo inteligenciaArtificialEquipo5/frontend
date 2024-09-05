@@ -1,0 +1,39 @@
+@import "./styles-colors.scss";
+
+.imagenLogoHeader {
+    max-width: 40rem;
+}
+
+.iconNavBar {
+    color: var(--colorBlancoTexto);
+}
+
+.navLink {
+    font-size: 1.5rem;
+    color: var(--colorTextSecundario);
+    text-decoration: none;
+    transition: color 0.5s ease, transform 0.5s ease;
+}
+
+.navLink:hover {
+    text-decoration: underline;
+    color: var(--colorBlancoTexto);
+    transform: scale(1.2);
+}
+
+
+@media (max-width: 768px) {
+    .navLink {
+        font-size: 1.05rem;
+    }
+
+    .navLink:hover {
+        text-decoration: underline;
+        color: var(--colorBlancoTexto);
+        transform: scale(1.05);
+    }
+
+    .imagenLogoHeader {
+        max-width: 13rem;
+    }
+}

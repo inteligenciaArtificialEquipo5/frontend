@@ -1,0 +1,175 @@
+@import "./styles-colors.scss";
+
+// Ajuste del contenedor principal
+.homePage {
+    max-width: 1200px;
+    width: 100%;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: rgba($colorNegroEspacial, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow-y: auto; // Scroll interno si el contenido es muy largo
+    max-height: 85vh; // Ajusta la altura a un porcentaje más bajo del viewport para dispositivos altos
+
+    @media (max-width: 1024px) {
+        max-height: 80vh; // Ajustes para resoluciones menores
+        padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        max-height: 70vh;
+        padding: 1rem;
+    }
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $colorBlancoTexto;
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+    width: 100%; // Asegura que cada input tome el ancho completo en pantallas pequeñas
+
+    @media (max-width: 768px) {
+        margin-bottom: 0.75rem;
+    }
+}
+
+.formGroupLabel {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: $colorGrisNebuloso;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
+}
+
+.formGroupInputText {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid $colorGrisNebuloso;
+    border-radius: 4px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+    }
+}
+
+.formGroupInputCheckbox {
+    align-self: center;
+}
+
+.submitButton,
+.randomButton {
+    background-color: $colorAzulProfundo;
+    color: $colorBlancoTexto;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $colorAzulEstelar;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column; // Pone los botones uno debajo del otro
+    }
+}
+
+.buttonWrapper {
+    flex: 1;
+}
+
+.randomButtonWrapper {
+    display: flex;
+    justify-content: flex-start;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+        margin-bottom: 1rem; // Añade espacio inferior entre los botones
+    }
+}
+
+.submitButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
+}
+
+.randomButton {
+    background-color: $colorNaranjaCrepuscular;
+    color: $colorBlancoTexto;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 1rem;
+
+    &:hover {
+        background-color: darken($colorNaranjaCrepuscular, 10%);
+    }
+
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+.submitButton {
+    background-color: $colorNaranjaCrepuscular;
+    color: $colorBlancoTexto;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 1rem;
+
+    &:hover {
+        background-color: darken($colorNaranjaCrepuscular, 10%);
+    }
+
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
