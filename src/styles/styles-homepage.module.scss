@@ -173,3 +173,159 @@
         padding: 0.5rem 1rem;
     }
 }
+
+.imageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.imageHomePlanetInputHomePage, .imageDestinationInputHomePage {
+    max-width: 5rem;
+}
+
+.btnModalCabinDeckInputHomePage {
+    background-color: $colorBlancoInput;
+}
+
+.btnModalCabinDeckInputHomePage:hover {
+    color: $colorNegroEspacial;
+    background-color: $colorGrisNebuloso;
+}
+
+.modalCabinDeck {
+    background-image: url("../assets/images/rocketImageBg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 34rem;
+    max-height: 34rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.titleModalCabinDeck {
+    color: $colorNegroEspacial;
+}
+
+.deckButton {
+    position: absolute;
+    background-color: rgba($colorAzulProfundo, 0.7);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        background-color: rgba($colorAzulProfundo, 0.9);
+        transform: scale(1.05);
+    }
+}
+
+/* Posicionamiento de los botones según los niveles del cohete */
+.deckA { 
+    top: 88%; /* Nivel más bajo del cohete */
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckB { 
+    top: 77%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckC { 
+    top: 66%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckD { 
+    top: 54%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckE { 
+    top: 42.5%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckF { 
+    top: 31%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckG { 
+    top: 19.5%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.deckT { 
+    top: 8%; 
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.active {
+    background-color: rgba($colorNegroEspacial, 1);
+    color: $colorBlancoTexto;
+    border: $colorBlancoTexto;
+}
+
+.modalCabinSide {
+    background-image: url("../assets/images/rocketSideBg.png"); // Cambia la imagen si es necesario
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 34rem; // Ajusta según el tamaño de la imagen o el modal
+    max-height: 34rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.titleModalCabinSide {
+    color: $colorNegroEspacial;
+}
+
+.sideButton {
+    position: absolute;
+    background-color: rgba($colorAzulProfundo, 0.7);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: rgba($colorAzulProfundo, 0.9);
+        transform: scale(1.1);
+    }
+}
+
+/* Posicionamiento de los botones para CabinSide (izquierda y derecha) */
+.sideP { 
+    left: 20%;
+}
+
+.sideS {
+    right: 20%;
+}
+
+.active {
+    background-color: rgba($colorNegroEspacial, 1);
+    color: $colorBlancoTexto;
+    border: $colorBlancoTexto;
+}
