@@ -421,8 +421,8 @@ const HomePage = () => {
                         <div className={`modal-dialog modal-dialog-centered`}>
                             <div className={`modal-content ${styles.modalResult}`}>
                                 <div className="modal-body">
-                                    <h5 className="modal-title text-center m-4">Resultado de la Predicción</h5>
-                                    <p className='m-2'>
+                                    <h5 className="modal-title text-center m-4 text-white">Resultado de la Predicción</h5>
+                                    <p className='m-2 text-white'>
                                         {predictionResult
                                             ? predictionResult.prediction
                                                 ? 'Lo sentimos, pero lo más probable es que la persona ingresada ha sido teletransportada.'
