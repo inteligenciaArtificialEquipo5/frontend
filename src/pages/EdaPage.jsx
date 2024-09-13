@@ -33,7 +33,7 @@ const EdaPage = () => {
                     'ngrok-skip-browser-warning': 'true'
                 }
             });
-            console.log(response)
+
             const cryoData = [
                 { name: 'CryoSleep False - Transported False', count: response.data.CryoSleep.CryoSleep_False_Transported_False },
                 { name: 'CryoSleep False - Transported True', count: response.data.CryoSleep.CryoSleep_False_Transported_True },
@@ -55,7 +55,7 @@ const EdaPage = () => {
                     'ngrok-skip-browser-warning': 'true'
                 }
             });
-            console.log(responseAgeData)
+
             // Preparar los datos en el formato adecuado para Recharts
             const ageData = [];
             for (let bin in responseAgeData.data.age_bins_transported) {
@@ -74,7 +74,7 @@ const EdaPage = () => {
                 }
             });
             setPlanetDestinationData(planetDestResponse.data);
-            console.log(planetDestResponse)
+
 
         } catch (error) {
             console.error("Error fetching data", error);
@@ -88,7 +88,7 @@ const EdaPage = () => {
     useEffect(() => {
         // Llamar a fetchData inicialmente
         fetchData();
-        
+
         // Crear un intervalo para actualizar los datos cada 5 segundos (5000 ms)
         const interval = setInterval(() => {
             fetchData();
@@ -126,7 +126,7 @@ const EdaPage = () => {
                 // Mostrar los gráficos cuando los datos se carguen
                 <>
                     <div className='row'>
-                        <div className={`col-12 col-lg-6 ${styles.chartContainer}`}>
+                        <div className={`col-12 col-lg-6 mt-1 ${styles.chartContainer}`}>
                             <div className={`row d-flex justify-content-between ${styles.contenedorGraficasPastel1}`}>
                                 <div className={`col-12 col-lg-5 ${styles.contenedorGraficoDashboardPastel}`}>
                                     <h5 className='text-center text-black'>CryoSleep</h5>
@@ -216,7 +216,7 @@ const EdaPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className={`col-12 col-lg-6 mx-3 ${styles.contenedorGraficoDashboardHistograma}`}>
+                        <div className={`col-12 col-lg-6 mx-lg-3 mt-1 ${styles.contenedorGraficoDashboardHistograma}`}>
                             <h5 className='text-center text-black'>Edad</h5>
                             <ResponsiveContainer width="100%" height={200}>
                                 <BarChart data={ageHistogramData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -233,42 +233,37 @@ const EdaPage = () => {
                     </div>
                     <br />
                     <div className="row">
-                        {Object.keys(planetDestinationData.planet_dest_transported).map((planet, index) => (
-                            <div key={index} className={`col ${styles.contenedorGraficoDashboardPastel}`}>
-                                <h5 className='text-center text-black'>{`Destinos desde ${planet}`}</h5>
-                                <ResponsiveContainer width="100%" height={250}>
-                                    <BarChart
-                                        data={Object.keys(planetDestinationData.planet_dest_transported).map(planet => {
-                                            const transported = planetDestinationData.planet_dest_transported[planet];
+                        <div className={`col ${styles.contenedorGraficoDashboardPastel}`}>
+                            <h5 className='text-center text-black'>Destinos por Planeta (Transportados)</h5>
+                            <ResponsiveContainer width="100%" height={250}>
+                                <BarChart
+                                    data={Object.keys(planetDestinationData.planet_dest_transported).map(planet => {
+                                        const transported = planetDestinationData.planet_dest_transported[planet];
 
-                                            // Crear un objeto con los destinos y sus valores de transportados
-                                            return {
-                                                planet,
-                                                'Transported 55 Cancri e': transported['55 Cancri e'] || 0,
-                                                'Transported PSO J318.5-22': transported['PSO J318.5-22'] || 0,
-                                                'Transported TRAPPIST-1e': transported['TRAPPIST-1e'] || 0
-                                            };
-                                        })}
-                                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                                    >
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="planet" />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
+                                        // Agrupar por planeta y mostrar solo los transportados para los tres destinos
+                                        return {
+                                            planet,
+                                            'Transported 55 Cancri e': transported['55 Cancri e'] || 0,
+                                            'Transported PSO J318.5-22': transported['PSO J318.5-22'] || 0,
+                                            'Transported TRAPPIST-1e': transported['TRAPPIST-1e'] || 0
+                                        };
+                                    })}
+                                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                                >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="planet" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Legend />
 
-                                        <Bar dataKey="Transported 55 Cancri e" fill={COLORS[0]} />
-                                        <Bar dataKey="Transported PSO J318.5-22" fill={COLORS[1]} />
-                                        <Bar dataKey="Transported TRAPPIST-1e" fill={COLORS[2]} />
-                                    </BarChart>
-                                </ResponsiveContainer>
-
-
-
-                            </div>
-                        ))}
+                                    {/* Barras solo para los destinos transportados */}
+                                    <Bar dataKey="Transported 55 Cancri e" stackId="a" fill={COLORS[0]} />
+                                    <Bar dataKey="Transported PSO J318.5-22" stackId="a" fill={COLORS[1]} />
+                                    <Bar dataKey="Transported TRAPPIST-1e" stackId="a" fill={COLORS[2]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
                     </div>
-
                 </>
             )}
         </motion.section>

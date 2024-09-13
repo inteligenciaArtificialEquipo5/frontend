@@ -25,7 +25,12 @@
 
 .contenedorGraficoDashboardPastel {
     background-color: rgba($color: $colorGrisNebuloso, $alpha: 0.7);
-    width: 17rem;
+
+    width: 100%;
+
+    @media (min-width: 1024px) {
+        width: 17rem;
+    }
 }
 
 .loaderContainer {
@@ -53,7 +58,12 @@
 
 .contenedorGraficoDashboardHistograma {
     background-color: rgba($color: $colorGrisNebuloso, $alpha: 0.7);
-    width: 33rem;
+
+    width: 100%;
+
+    @media (min-width: 1024px) {
+        width: 33rem;
+    }
 }
 
 @keyframes spin {
