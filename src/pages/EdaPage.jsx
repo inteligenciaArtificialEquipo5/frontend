@@ -28,7 +28,7 @@ const EdaPage = () => {
             setIsLoading(true);
 
             const response = await axios.get(`${urlBack}/predictions/cryosleep-vip-transported`);
-
+            console.log(response)
             const cryoData = [
                 { name: 'CryoSleep False - Transported False', count: response.data.CryoSleep.CryoSleep_False_Transported_False },
                 { name: 'CryoSleep False - Transported True', count: response.data.CryoSleep.CryoSleep_False_Transported_True },
