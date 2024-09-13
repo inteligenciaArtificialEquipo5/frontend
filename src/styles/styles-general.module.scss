@@ -11,13 +11,13 @@ html, body {
 }
 
 body {
-    background-image: url('/spaceBg.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; // Ocupa el 100% de la ventana sin limitar el crecimiento
-    display: flex;
-    flex-direction: column;
+    background-image: url('/spaceBg.webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    min-height: 100vh !important; // Ocupa el 100% de la ventana sin limitar el crecimiento
+    display: flex !important;
+    flex-direction: column !important;
     justify-content: flex-start; // El contenido comienza desde arriba
     color: $colorBlancoTexto;
     
