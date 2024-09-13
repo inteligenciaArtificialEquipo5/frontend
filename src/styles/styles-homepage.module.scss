@@ -182,7 +182,8 @@
     text-align: center;
 }
 
-.imageHomePlanetInputHomePage, .imageDestinationInputHomePage {
+.imageHomePlanetInputHomePage,
+.imageDestinationInputHomePage {
     max-width: 5rem;
 }
 
@@ -229,50 +230,51 @@
 }
 
 /* Posicionamiento de los botones según los niveles del cohete */
-.deckA { 
-    top: 88%; /* Nivel más bajo del cohete */
+.deckA {
+    top: 88%;
+    /* Nivel más bajo del cohete */
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckB { 
-    top: 77%; 
+.deckB {
+    top: 77%;
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckC { 
-    top: 66%; 
+.deckC {
+    top: 66%;
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckD { 
-    top: 54%; 
+.deckD {
+    top: 54%;
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckE { 
-    top: 42.5%; 
+.deckE {
+    top: 42.5%;
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckF { 
-    top: 31%; 
+.deckF {
+    top: 31%;
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckG { 
-    top: 19.5%; 
+.deckG {
+    top: 19.5%;
     left: 51%;
     transform: translateX(-50%);
 }
 
-.deckT { 
-    top: 8%; 
+.deckT {
+    top: 8%;
     left: 51%;
     transform: translateX(-50%);
 }
@@ -316,7 +318,7 @@
 }
 
 /* Posicionamiento de los botones para CabinSide (izquierda y derecha) */
-.sideP { 
+.sideP {
     left: 20%;
 }
 
@@ -350,3 +352,51 @@
     background-repeat: no-repeat;
 }
 
+.backdropBlur {
+    backdrop-filter: blur(200px);
+    /* Aplica el desenfoque al fondo */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1040;
+    /* Asegura que esté por debajo del modal */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Añade una capa semitransparente oscura */
+}
+
+/* Estilo del modal para resaltar */
+.modal-content {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* Añade sombra al modal */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    z-index: 1055;
+    /* Asegura que el modal esté sobre el backdrop */
+}
+
+.modalResult {
+    background-image: url("../../public/spaceBg.webp");
+}
+
+/* Asegura que el modal esté centrado correctamente */
+.modal-dialog {
+    margin-top: 15%;
+}
+
+.btnModalResult {
+    background-color: $colorNaranjaCrepuscular;
+    color: $colorBlancoTexto;
+    border: none;
+    padding: 0.4rem 2rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 1rem;
+
+    &:hover {
+        background-color: darken($colorNaranjaCrepuscular, 10%);
+    }
+}

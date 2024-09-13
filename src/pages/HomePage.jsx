@@ -64,6 +64,9 @@ const HomePage = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [predictionResult, setPredictionResult] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
     const handleHomePlanetSelect = (planet, index) => {
         setFormData(prevData => ({
             ...prevData,
@@ -121,11 +124,12 @@ const HomePage = () => {
 
             try {
                 const response = await axios.post(`${urlBack}/predict`, datos);
-                console.log('Respuesta del servidor:', response.data);
+                setPredictionResult(response.data);
             } catch (error) {
                 console.error('Error al enviar los datos:', error);
             } finally {
-                setIsLoading(false); // Desactivar el loader después de la solicitud
+                setIsLoading(false);
+                setShowModal(true);
             }
         }, 2000);
     };
@@ -402,6 +406,47 @@ const HomePage = () => {
                     ><img className={styles.rocket} src={rocketLoader} alt="loader" /></motion.div>
                 </div>
             )}
+
+            {/* Modal del resultado de la predicción */}
+            {showModal && (
+                <>
+                    <div className={`modal-backdrop fade show ${styles.backdropBlur}`}></div>
+                    <motion.div
+                        className="modal fade show"
+                        style={{ display: 'block', zIndex: 1055 }} // Asegura que el modal esté por encima del backdrop
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <div className={`modal-dialog modal-dialog-centered`}>
+                            <div className={`modal-content ${styles.modalResult}`}>
+                                <div className="modal-body">
+                                    <h5 className="modal-title text-center m-4">Resultado de la Predicción</h5>
+                                    <p className='m-2'>
+                                        {predictionResult
+                                            ? predictionResult.prediction
+                                                ? 'Lo sentimos, pero lo más probable es que la persona ingresada ha sido teletransportada.'
+                                                : 'La persona ingresada no fue teletransportada.'
+                                            : "No hay datos disponibles"}
+                                    </p>
+                                    <div className='text-end'>
+                                    <button
+                                        type="button"
+                                        className={`btn btn-custom m-2 text-white ${styles.btnModalResult}`}
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        Cerrar
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </>
+            )}
+
+
+
         </section>
     );
 };
