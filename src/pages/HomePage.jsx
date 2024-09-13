@@ -206,7 +206,7 @@ const HomePage = () => {
                                     >
                                         <div className={styles.imageWrapper}>
                                             <img src={destination.imgSrc} className={`w-100 img-fluid ${styles.imageDestinationInputHomePage}`} alt={destination.label} />
-                                            <h5 className=''>{destination.label}</h5>
+                                            <h5 className='text-white'>{destination.label}</h5>
                                         </div>
                                     </div>
                                 ))}
