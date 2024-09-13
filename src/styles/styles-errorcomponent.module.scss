@@ -1,0 +1,26 @@
+// ErrorComponent.module.scss
+.errorContainer {
+    padding: 20px;
+    text-align: center;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    height: 80vh;
+}
+
+.errorTitle {
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+.errorMessage {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.errorImage {
+    margin-top: 15px;
+    max-width: 20rem;
+    height: auto;
+}

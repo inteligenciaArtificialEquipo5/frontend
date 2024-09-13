@@ -114,8 +114,8 @@ const HomePage = () => {
                 "ShoppingMall": formData.ShoppingMall,
                 "Spa": formData.Spa,
                 "VRDeck": formData.VRDeck,
-                "HomePlanet": formData.HomePlanet,
-                "Destination": formData.Destination,
+                "HomePlanet": homePlanetOptions.findIndex(option => option.label === formData.HomePlanet),
+                "Destination": destinationOptions.findIndex(option => option.label === formData.Destination),
                 "CryoSleep": formData.CryoSleep === 'Yes' ? true : false,
                 "VIP": formData.VIP === 'Yes' ? true : false,
                 "CabinDeck": formData.CabinDeck,
@@ -169,7 +169,16 @@ const HomePage = () => {
     };
 
     return (
-        <section className={`container mt-5 ${styles.homePage}`}>
+        <motion.section className={`container mt-5 ${styles.homePage}`}
+            initial={{ opacity: 0, scale: 0.8 }}  // Empieza con opacidad 0 y tamaño reducido
+            animate={{ opacity: 1, scale: 1 }}   // Se anima a opacidad 1 y tamaño original
+            transition={{
+                type: "spring",     // Tipo de animación "spring" para dar el efecto de elasticidad
+                stiffness: 260,     // La rigidez del "spring" (valor más alto = rebote más rápido)
+                damping: 20,        // Amortiguación del "spring"
+                duration: 0.5       // Duración del efecto
+            }}
+        >
             <h1 className={styles.heading}>Ingreso de Datos para Predicción</h1>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <section className="row w-100">
@@ -440,13 +449,13 @@ const HomePage = () => {
                                             : "No hay datos disponibles"}
                                     </p>
                                     <div className='text-end'>
-                                    <button
-                                        type="button"
-                                        className={`btn btn-custom m-2 text-white ${styles.btnModalResult}`}
-                                        onClick={() => setShowModal(false)}
-                                    >
-                                        Cerrar
-                                    </button>
+                                        <button
+                                            type="button"
+                                            className={`btn btn-custom m-2 text-white ${styles.btnModalResult}`}
+                                            onClick={() => setShowModal(false)}
+                                        >
+                                            Cerrar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -454,10 +463,7 @@ const HomePage = () => {
                     </motion.div>
                 </>
             )}
-
-
-
-        </section>
+        </motion.section>
     );
 };
 
