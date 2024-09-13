@@ -1,0 +1,42 @@
+@import "./styles-colors.scss";
+
+.contenedorPrincipalDashboard {
+    max-width: 1200px;
+    width: 100%;
+    height: auto; // Cambiado para que el contenedor se ajuste automáticamente a la imagen
+    margin: 0 auto;
+    background-color: rgba($colorNegroEspacial, 0.3); // Fondo semitransparente
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); // Sombra para mayor visibilidad
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    @media (max-width: 1024px) {
+        padding: 1rem;
+        max-height: 80vh;
+    }
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+        max-height: 70vh;
+    }
+}
+
+.pageTitle {
+    font-size: 2.5rem; // Ajustado el tamaño para mejor legibilidad
+    color: $colorAzulEstelar;
+    margin-bottom: 2rem;
+}
+
+.modeloImagen {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain; // Mantiene las proporciones de la imagen
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin: 0 auto; // Centrado en el contenedor
+    display: block; // Asegura que se muestre como bloque para evitar problemas de alineación
+}
