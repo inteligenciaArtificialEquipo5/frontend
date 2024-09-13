@@ -1,4 +1,3 @@
-// ErrorComponent.module.scss
 .errorContainer {
     padding: 20px;
     text-align: center;
@@ -7,20 +6,53 @@
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     height: 80vh;
+    
+    // Ajustes para pantallas pequeñas
+    @media (max-width: 576px) {
+        padding: 10px;
+        height: 80vh;
+    }
 }
 
 .errorTitle {
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: bold;
+
+    // Ajuste de tamaño en pantallas pequeñas
+    @media (max-width: 576px) {
+        font-size: 2rem;
+    }
+
+    // Ajuste para pantallas grandes
+    @media (min-width: 992px) {
+        font-size: 5rem;
+    }
 }
 
 .errorMessage {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 10px 0;
+
+    // Ajuste de tamaño en pantallas pequeñas
+    @media (max-width: 576px) {
+        font-size: 1.2rem;
+    }
+
+    // Ajuste para pantallas grandes
+    @media (min-width: 992px) {
+        font-size: 2rem;
+    }
 }
 
 .errorImage {
     margin-top: 15px;
-    max-width: 20rem;
+    max-width: 100%; // Hace la imagen completamente responsiva
     height: auto;
+
+    max-width: 6rem;
+
+    // Ajuste en pantallas grandes
+    @media (min-width: 365px) {
+        max-width: 20rem;
+    }
 }
