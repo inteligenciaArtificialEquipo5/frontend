@@ -123,7 +123,11 @@ const HomePage = () => {
             };
 
             try {
-                const response = await axios.post(`${urlBack}/predict`, datos);
+                const response = await axios.post(`${urlBack}/predict`, datos, {
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                });
                 setPredictionResult(response.data);
             } catch (error) {
                 console.error('Error al enviar los datos:', error);

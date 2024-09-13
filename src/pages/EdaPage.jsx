@@ -25,9 +25,14 @@ const EdaPage = () => {
     // Función para obtener los datos desde la API
     const fetchData = async () => {
         try {
+
             setIsLoading(true);
 
-            const response = await axios.get(`${urlBack}/predictions/cryosleep-vip-transported`);
+            const response = await axios.get(`${urlBack}/predictions/cryosleep-vip-transported`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             console.log(response)
             const cryoData = [
                 { name: 'CryoSleep False - Transported False', count: response.data.CryoSleep.CryoSleep_False_Transported_False },
@@ -35,7 +40,6 @@ const EdaPage = () => {
                 { name: 'CryoSleep True - Transported False', count: response.data.CryoSleep.CryoSleep_True_Transported_False },
                 { name: 'CryoSleep True - Transported True', count: response.data.CryoSleep.CryoSleep_True_Transported_True },
             ];
-            console.log(response)
             setCryosleepData(cryoData);
 
             const vipData = [
@@ -46,7 +50,11 @@ const EdaPage = () => {
             ];
             setVipData(vipData);
 
-            const responseAgeData = await axios.get(`${urlBack}/predictions/age-transportation`);
+            const responseAgeData = await axios.get(`${urlBack}/predictions/age-transportation`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             console.log(responseAgeData)
             // Preparar los datos en el formato adecuado para Recharts
             const ageData = [];
@@ -60,7 +68,11 @@ const EdaPage = () => {
 
             setAgeHistogramData(ageData);
 
-            const planetDestResponse = await axios.get(`${urlBack}/predictions/planet-destination`);
+            const planetDestResponse = await axios.get(`${urlBack}/predictions/planet-destination`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             setPlanetDestinationData(planetDestResponse.data);
             console.log(planetDestResponse)
 
