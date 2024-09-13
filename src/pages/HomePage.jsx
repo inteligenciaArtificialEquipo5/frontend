@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import styles from "../styles/styles-homepage.module.scss";
 
 import earthImage from "../assets/images/earthImage.webp";
@@ -8,6 +9,7 @@ import marsImage from "../assets/images/marsImage.webp";
 import trappistImage from "../assets/images/estado1Image.png"
 import psoImage from "../assets/images/estado2Image.png"
 import cancriImage from "../assets/images/estado3Image.png"
+import rocketLoader from "../assets/images/rocketLoader.png"
 
 // Opciones para HomePlanet
 const homePlanetOptions = [
@@ -60,6 +62,8 @@ const HomePage = () => {
     const [activeHomePlanetIndex, setActiveHomePlanetIndex] = useState(0);
     const [activeDestinationIndex, setActiveDestinationIndex] = useState(0);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleHomePlanetSelect = (planet, index) => {
         setFormData(prevData => ({
             ...prevData,
@@ -97,32 +101,33 @@ const HomePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
-        // Crear el objeto con los datos en el formato que mencionaste
-        const datos = {
-            "Age": formData.Age,
-            "RoomService": formData.RoomService,
-            "FoodCourt": formData.FoodCourt,
-            "ShoppingMall": formData.ShoppingMall,
-            "Spa": formData.Spa,
-            "VRDeck": formData.VRDeck,
-            "HomePlanet": formData.HomePlanet,
-            "Destination": formData.Destination,
-            "CryoSleep": formData.CryoSleep,
-            "VIP": formData.VIP,
-            "CabinDeck": formData.CabinDeck,
-            "CabinSide": formData.CabinSide
-        };
+        setTimeout(async () => {
+            const datos = {
+                "Age": formData.Age,
+                "RoomService": formData.RoomService,
+                "FoodCourt": formData.FoodCourt,
+                "ShoppingMall": formData.ShoppingMall,
+                "Spa": formData.Spa,
+                "VRDeck": formData.VRDeck,
+                "HomePlanet": formData.HomePlanet,
+                "Destination": formData.Destination,
+                "CryoSleep": formData.CryoSleep,
+                "VIP": formData.VIP,
+                "CabinDeck": formData.CabinDeck,
+                "CabinSide": formData.CabinSide
+            };
 
-        try {
-            // Enviar los datos con axios
-            const response = await axios.post(`${urlBack}/predict`, datos);
-            console.log('Respuesta del servidor:', response.data);
-        } catch (error) {
-            console.error('Error al enviar los datos:', error);
-        }
-
-
+            try {
+                const response = await axios.post(`${urlBack}/predict`, datos);
+                console.log('Respuesta del servidor:', response.data);
+            } catch (error) {
+                console.error('Error al enviar los datos:', error);
+            } finally {
+                setIsLoading(false); // Desactivar el loader después de la solicitud
+            }
+        }, 2000);
     };
 
     const generateRandomData = () => {
@@ -386,6 +391,17 @@ const HomePage = () => {
                     </div>
                 </div>
             </form>
+
+            {/* Loader del cohete */}
+            {isLoading && (
+                <div className={styles.backdrop}>
+                    <motion.div
+                        initial={{ x: '-60vw' }} // Comienza fuera de la pantalla (a la derecha)
+                        animate={{ x: '60vw' }}   // Se mueve hacia el centro
+                        transition={{ duration: 2.5, }}
+                    ><img className={styles.rocket} src={rocketLoader} alt="loader" /></motion.div>
+                </div>
+            )}
         </section>
     );
 };
