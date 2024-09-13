@@ -116,8 +116,8 @@ const HomePage = () => {
                 "VRDeck": formData.VRDeck,
                 "HomePlanet": formData.HomePlanet,
                 "Destination": formData.Destination,
-                "CryoSleep": formData.CryoSleep,
-                "VIP": formData.VIP,
+                "CryoSleep": formData.CryoSleep === 'Yes' ? true : false,
+                "VIP": formData.VIP === 'Yes' ? true : false,
                 "CabinDeck": formData.CabinDeck,
                 "CabinSide": formData.CabinSide
             };

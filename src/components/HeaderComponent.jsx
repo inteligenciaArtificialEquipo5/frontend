@@ -24,7 +24,7 @@ const HeaderComponent = () => {
                                 <NavLink className={`nav-link text-white text-end ${styles.navLink}`} to="/modelo">Modelo</NavLink>
                             </li>
                             <li className="nav-item mx-lg-5 my-2 my-lg-0">
-                                <NavLink className={`nav-link text-white text-end ${styles.navLink}`} to="/eda">EDA</NavLink>
+                                <NavLink className={`nav-link text-white text-end ${styles.navLink}`} to="/eda">Dashboard</NavLink>
                             </li>
                         </ul>
                     </div>

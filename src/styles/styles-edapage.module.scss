@@ -1,0 +1,29 @@
+@import "./styles-colors.scss";
+
+.contenedorPrincipalDashboard {
+    max-width: 1200px;
+    width: 100%;
+    height: 90vh;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: rgba($colorNegroEspacial, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow-y: auto; // Scroll interno si el contenido es muy largo
+    max-height: 85vh; // Ajusta la altura a un porcentaje más bajo del viewport para dispositivos altos
+
+    @media (max-width: 1024px) {
+        max-height: 80vh; // Ajustes para resoluciones menores
+        padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        max-height: 70vh;
+        padding: 1rem;
+    }
+}
+
+.contenedorGraficoDashboardPastel {
+    background-color: rgba($color: $colorGrisNebuloso, $alpha: 0.7);
+    width: 17rem;
+}
