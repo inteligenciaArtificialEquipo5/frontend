@@ -309,41 +309,49 @@ const HomePage = () => {
                             <div className={`modal-body ${styles.modalCabinDeck}`}>
                                 {/* Opciones ubicadas en los niveles del cohete */}
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckA} ${formData.CabinDeck === 'A' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('A')}>
                                     A
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckB} ${formData.CabinDeck === 'B' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('B')}>
                                     B
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckC} ${formData.CabinDeck === 'C' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('C')}>
                                     C
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckD} ${formData.CabinDeck === 'D' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('D')}>
                                     D
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckE} ${formData.CabinDeck === 'E' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('E')}>
                                     E
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckF} ${formData.CabinDeck === 'F' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('F')}>
                                     F
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckG} ${formData.CabinDeck === 'G' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('G')}>
                                     G
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.deckButton} ${styles.deckT} ${formData.CabinDeck === 'T' ? styles.active : ''}`}
                                     onClick={() => handleCabinDeckSelect('T')}>
                                     T
@@ -367,11 +375,13 @@ const HomePage = () => {
                             <div className={`modal-body ${styles.modalCabinSide}`}>
                                 {/* Opciones ubicadas en los lados del cohete */}
                                 <button
+                                    type='button'
                                     className={`${styles.sideButton} ${styles.sideP} ${formData.CabinSide === 'P' ? styles.active : ''}`}
                                     onClick={() => handleCabinSideSelect('P')}>
                                     Lado P
                                 </button>
                                 <button
+                                    type='button'
                                     className={`${styles.sideButton} ${styles.sideS} ${formData.CabinSide === 'S' ? styles.active : ''}`}
                                     onClick={() => handleCabinSideSelect('S')}>
                                     Lado S
