@@ -177,7 +177,7 @@ const HomePage = () => {
                                     >
                                         <div className={styles.imageWrapper}>
                                             <img src={planet.imgSrc} className={`w-100 img-fluid ${styles.imageHomePlanetInputHomePage}`} alt={planet.label} />
-                                            <h5 className=''>{planet.label}</h5>
+                                            <h5 className='text-white'>{planet.label}</h5>
                                         </div>
                                     </div>
                                 ))}
