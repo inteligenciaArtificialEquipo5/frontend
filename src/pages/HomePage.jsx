@@ -25,6 +25,7 @@ const destinationOptions = [
     { label: '55 Cancri e', imgSrc: cancriImage }
 ];
 
+// Función que genera datos aleatorios para los campos del formulario
 const randomData = {
     Age: () => Math.floor(Math.random() * 100),
     RoomService: () => Math.floor(Math.random() * 1000),
@@ -67,14 +68,17 @@ const HomePage = () => {
     const [predictionResult, setPredictionResult] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    // Función para seleccionar un HomePlanet y actualizar el estado
     const handleHomePlanetSelect = (planet, index) => {
+        // Actualiza el formulario con el planeta seleccionado
         setFormData(prevData => ({
             ...prevData,
             HomePlanet: planet
         }));
-        setActiveHomePlanetIndex(index);
+        setActiveHomePlanetIndex(index); // Actualiza el índice activo del carrusel
     };
 
+    // Función para seleccionar un Destination y actualizar el estado
     const handleDestinationSelect = (destination, index) => {
         setFormData(prevData => ({
             ...prevData,
@@ -83,6 +87,7 @@ const HomePage = () => {
         setActiveDestinationIndex(index);
     };
 
+    // Función para seleccionar CabinDeck
     const handleCabinDeckSelect = (deck) => {
         setFormData(prevData => ({
             ...prevData,
@@ -90,6 +95,7 @@ const HomePage = () => {
         }));
     };
 
+    // Función para seleccionar CabinSide
     const handleCabinSideSelect = (side) => {
         setFormData(prevData => ({
             ...prevData,
@@ -97,16 +103,19 @@ const HomePage = () => {
         }));
     };
 
+    // Función para manejar los cambios en los campos del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
+    // Función para manejar el envío del formulario
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
+        e.preventDefault(); // Evita el comportamiento por defecto del formulario
+        setIsLoading(true); // Activa el estado de cargando
 
         setTimeout(async () => {
+            // Datos que se enviarán al backend
             const datos = {
                 "Age": formData.Age,
                 "RoomService": formData.RoomService,
@@ -123,21 +132,23 @@ const HomePage = () => {
             };
 
             try {
+                // Envío de datos al backend
                 const response = await axios.post(`${urlBack}/predict`, datos, {
                     headers: {
                         'ngrok-skip-browser-warning': 'true'
                     }
                 });
-                setPredictionResult(response.data);
+                setPredictionResult(response.data); // Guarda el resultado de la predicción
             } catch (error) {
                 console.error('Error al enviar los datos:', error);
             } finally {
-                setIsLoading(false);
-                setShowModal(true);
+                setIsLoading(false); // Quita pantalla de carga
+                setShowModal(true); // Muestra el modal con el resultado
             }
         }, 2000);
     };
 
+    // Función para generar datos aleatorios para el formulario 
     const generateRandomData = () => {
         const newData = {};
 
@@ -169,7 +180,7 @@ const HomePage = () => {
             newData.VRDeck = '0';
         }
 
-        setFormData(newData);
+        setFormData(newData); // Actualiza el formulario con los datos aleatorios
     };
 
     return (

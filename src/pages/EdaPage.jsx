@@ -3,24 +3,25 @@ import { motion } from 'framer-motion'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Pie, PieChart, Cell } from 'recharts';
 import axios from 'axios';
 
-import styles from "../styles/styles-edapage.module.scss"
-import ErrorComponent from '../components/ErrorComponent';
-const COLORS = ['#FFA500', '#45A29E', '#66FCF1', '#1F2833'];
+import styles from "../styles/styles-edapage.module.scss";  // Importa los estilos
+import ErrorComponent from '../components/ErrorComponent'; // Componente de error personalizado
+const COLORS = ['#FFA500', '#45A29E', '#66FCF1', '#1F2833'];  // Colores para las gráficas
 
-import connectionErrorImg from "../assets/images/noConexion.png"
+import connectionErrorImg from "../assets/images/noConexion.png";  // Imagen de error de conexión
 
 
 const EdaPage = () => {
 
-    const urlBack = import.meta.env.VITE_BACK_URL
+    const urlBack = import.meta.env.VITE_BACK_URL // URL del backend desde variables de entorno
 
+    // Estados para almacenar los datos obtenidos de la API
     const [cryosleepData, setCryosleepData] = useState([]);
     const [vipData, setVipData] = useState([]);
     const [ageHistogramData, setAgeHistogramData] = useState([]);
     const [planetDestinationData, setPlanetDestinationData] = useState({});
 
-    const [error, setError] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false); // Estado para manejar errores
+    const [isLoading, setIsLoading] = useState(true); // Estado para manejar la carga
 
     // Función para obtener los datos desde la API
     const fetchData = async () => {
@@ -28,12 +29,14 @@ const EdaPage = () => {
 
             setIsLoading(true);
 
+            // Primera petición: obtener datos de CryoSleep y VIP
             const response = await axios.get(`${urlBack}/predictions/cryosleep-vip-transported`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
                 }
             });
 
+            // Preparar datos de CryoSleep para la gráfica de pastel
             const cryoData = [
                 { name: 'CryoSleep False - Transported False', count: response.data.CryoSleep.CryoSleep_False_Transported_False },
                 { name: 'CryoSleep False - Transported True', count: response.data.CryoSleep.CryoSleep_False_Transported_True },
@@ -42,6 +45,7 @@ const EdaPage = () => {
             ];
             setCryosleepData(cryoData);
 
+            // Preparar datos de VIP para la gráfica de pastel
             const vipData = [
                 { name: 'VIP False - Transported False', count: response.data.VIP.VIP_False_Transported_False },
                 { name: 'VIP False - Transported True', count: response.data.VIP.VIP_False_Transported_True },
@@ -50,6 +54,7 @@ const EdaPage = () => {
             ];
             setVipData(vipData);
 
+            // Segunda petición: Obtener datos sobre la edad y los personas transportadas
             const responseAgeData = await axios.get(`${urlBack}/predictions/age-transportation`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
@@ -65,9 +70,9 @@ const EdaPage = () => {
                     'Not Transported': responseAgeData.data.age_bins_not_transported[bin]
                 });
             }
-
             setAgeHistogramData(ageData);
 
+            // Tercera petición: obtener datos de destinos por planeta
             const planetDestResponse = await axios.get(`${urlBack}/predictions/planet-destination`, {
                 headers: {
                     'ngrok-skip-browser-warning': 'true'
@@ -78,18 +83,18 @@ const EdaPage = () => {
 
         } catch (error) {
             console.error("Error fetching data", error);
-            setError(true);
+            setError(true);  // Si ocurre un error, activar el estado de error
             setIsLoading(false);
         } finally {
-            setIsLoading(false);
+            setIsLoading(false);  // Desactivar la carga al finalizar
         }
     };
 
     useEffect(() => {
-        // Llamar a fetchData inicialmente
+        // Llamar a fetchData cuando se monte el componente
         fetchData();
 
-        // Crear un intervalo para actualizar los datos cada 5 segundos (5000 ms)
+        // Actualizar los datos cada 60 segundos
         const interval = setInterval(() => {
             fetchData();
         }, 60000);
@@ -129,6 +134,7 @@ const EdaPage = () => {
                         <div className={`col-12 col-lg-6 mt-1 ${styles.chartContainer}`}>
                             <div className={`row d-flex justify-content-between ${styles.contenedorGraficasPastel1}`}>
                                 <div className={`col-12 col-lg-5 ${styles.contenedorGraficoDashboardPastel}`}>
+                                    {/* Gráfico de pastel para CryoSleep */}
                                     <h5 className='text-center text-black'>CryoSleep</h5>
                                     <ResponsiveContainer width="100%" height={200}>
                                         <PieChart>
@@ -171,6 +177,8 @@ const EdaPage = () => {
                                         </PieChart>
                                     </ResponsiveContainer>
                                 </div>
+
+                                {/* Gráfico de pastel para VIP */}
                                 <div className={`col-12 col-lg-5 ${styles.contenedorGraficoDashboardPastel}`}>
                                     <h5 className='text-center text-black'>VIP</h5>
                                     <ResponsiveContainer width="100%" height={200}>
@@ -217,6 +225,7 @@ const EdaPage = () => {
                             </div>
                         </div>
                         <div className={`col-12 col-lg-6 mx-lg-3 mt-1 ${styles.contenedorGraficoDashboardHistograma}`}>
+                            {/* Gráfico de barras para Edad */}
                             <h5 className='text-center text-black'>Edad</h5>
                             <ResponsiveContainer width="100%" height={200}>
                                 <BarChart data={ageHistogramData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -234,6 +243,7 @@ const EdaPage = () => {
                     <br />
                     <div className="row">
                         <div className={`col ${styles.contenedorGraficoDashboardPastel}`}>
+                            {/* Gráfico de barras para Destinos por Planeta */}
                             <h5 className='text-center text-black'>Destinos por Planeta (Transportados)</h5>
                             <ResponsiveContainer width="100%" height={250}>
                                 <BarChart
